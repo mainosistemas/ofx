@@ -174,6 +174,8 @@ module OFX
           :amount_in_pennies => (amount * 100).to_i,
           :posted_at => posted_at
         })
+      rescue StandardError
+        0.0
       end
 
       def build_available_balance(node)
@@ -188,6 +190,8 @@ module OFX
         else
           return nil
         end
+      rescue StandardError
+        0.0
       end
 
       def to_decimal(amount)
