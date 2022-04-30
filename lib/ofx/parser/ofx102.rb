@@ -196,6 +196,8 @@ module OFX
 
       def to_decimal(amount)
         BigDecimal(amount.to_s.gsub(',', '.'))
+      rescue ArgumentError
+        BigDecimal('0.0')
       end
     end
   end

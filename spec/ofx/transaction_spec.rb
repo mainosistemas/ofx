@@ -197,5 +197,24 @@ describe OFX::Transaction do
         @transaction.amount_in_pennies.should == 4701
       end
     end
+
+    context "invalid decimal values" do
+      before do
+        @ofx = OFX::Parser::Base.new("spec/fixtures/cef_malformed_decimal.ofx")
+        @parser = @ofx.parser
+      end
+
+      it "should not raise error" do
+        expect { @parser.account.transactions }.to_not raise_error
+      end
+
+      it "should return zero in amount" do
+        expect(@parser.account.transactions[0].amount).to eql BigDecimal('0.0')
+      end
+
+      it "should return zero in amount_in_pennies" do
+        expect(@parser.account.transactions[0].amount_in_pennies).to eql 0
+      end
+    end
   end
 end
