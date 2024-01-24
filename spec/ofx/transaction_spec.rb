@@ -113,7 +113,7 @@ describe OFX::Transaction do
     end
 
     it "should have user date" do
-      @transaction.occurred_at.should == Time.parse("2009-10-17 12:00:00")
+      @transaction.occurred_at.should == Time.parse("2009-10-17 12:00:00 -0300")
     end
 
     it "should have type" do
@@ -208,12 +208,12 @@ describe OFX::Transaction do
         expect { @ofx.parser.account.transactions }.to_not raise_error
       end
 
-      xit "should return zero in amount" do
-        expect { @ofx.parser.account.transactions[0].amount }. to eql BigDecimal('0.0')
+      it "should return zero in amount" do
+        @ofx.parser.account.transactions[0].amount.should == BigDecimal('0.0')
       end
 
-      xit "should return zero in amount_in_pennies" do
-        expect { @ofx.parser.account.transactions[0].amount_in_pennies }.to eql 0
+      it "should return zero in amount_in_pennies" do
+        @ofx.parser.account.transactions[0].amount_in_pennies.should == 0
       end
     end
   end
