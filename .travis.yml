@@ -6,5 +6,5 @@ rvm:
 
 before_install:
   - echo "BEFORE INSTALL START"
-  - gem install bundler
+  - gem install bundler -v 2.2.15
   - echo "BEFORE INSTALL END"
