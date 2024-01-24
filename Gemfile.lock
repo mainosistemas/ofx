@@ -41,7 +41,6 @@ PLATFORMS
 
 DEPENDENCIES
   ofx!
-  pry
   pry-byebug
   rake
   rspec (~> 2.7)
