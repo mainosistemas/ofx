@@ -38,8 +38,9 @@ describe OFX::Parser::OFX102 do
   
   it "should know about all transaction types" do
     valid_types = [
-      'CREDIT', 'DEBIT', 'INT', 'DIV', 'FEE', 'SRVCHG', 'DEP', 'ATM', 'POS', 'XFER',
-      'CHECK', 'PAYMENT', 'CASH', 'DIRECTDEP', 'DIRECTDEBIT', 'REPEATPMT', 'OTHER'
+      'ATM', 'CASH', 'CHECK', 'CREDIT', 'DEBIT', 'DEP', 'DIRECTDEBIT', 'DIRECTDEP', 'DIV',
+      'FEE', 'INT', 'OTHER', 'PAYMENT', 'POS', 'REPEATPMT', 'SRVCHG', 'XFER', 'BANK_SLIP',
+      'PIX', 'PIX_REFUND', 'PIX_REVENUE', 'BILLING'
     ]
     valid_types.sort.should == OFX::Parser::OFX102::TRANSACTION_TYPES.keys.sort
 
