@@ -1,13 +1,13 @@
-= OFX
+# OFX
 
-{<img src="https://badge.fury.io/rb/ofx.png" alt="Gem Version" />}[http://badge.fury.io/rb/ofx]
-{<img src="https://app.travis-ci.com/mainosistemas/ofx.svg?branch=main" alt="Build Status" />}[https://travis-ci.org/mainosistemas/ofx]
+<img src="https://badge.fury.io/rb/ofx.png" alt="Gem Version" />
+<img src="https://app.travis-ci.com/mainosistemas/ofx.svg?branch=main" alt="Build Status" />
 
 A simple OFX (Open Financial Exchange) parser built on top of Nokogiri. Currently supports both OFX 1.0.2 and 2.1.1.
 
 Works on both ruby 1.9 and 2.0.
 
-== Usage
+## Usage
 
   require "ofx"
 
@@ -19,15 +19,15 @@ Works on both ruby 1.9 and 2.0.
 
 Invalid files will raise an OFX::UnsupportedFileError.
 
-== Creator
+## Creator
 
 * Nando Vieira - http://simplesideias.com.br
 
-== Maintainer
+## Maintainer
 
 * Anna Cruz - http://anna-cruz.com
 
-== License
+## License
 
 (The MIT License)
 
