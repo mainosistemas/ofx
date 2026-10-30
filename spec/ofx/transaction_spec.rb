@@ -163,6 +163,23 @@ describe OFX::Transaction do
     end
   end
 
+  context "with PagBank IN and OUT types" do
+    before do
+      content = open("spec/fixtures/sample.ofx").read
+        .sub("<TRNTYPE>DEBIT", "<TRNTYPE>OUT")
+        .sub("<TRNTYPE>CREDIT", "<TRNTYPE>IN")
+      @account = OFX::Parser::Base.new(content).parser.account
+    end
+
+    it "should return debit for OUT" do
+      @account.transactions[0].type.should == :debit
+    end
+
+    it "should return credit for IN" do
+      @account.transactions[1].type.should == :credit
+    end
+  end
+
   context "decimal values using a comma" do
     before do
       @ofx = OFX::Parser::Base.new("spec/fixtures/santander.ofx")

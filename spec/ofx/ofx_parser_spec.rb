@@ -47,6 +47,17 @@ describe OFX::Parser do
     }.should raise_error(OFX::UnsupportedFileError)
   end
 
+  it "should use 102 parser to parse version 100 ofx files" do
+    OFX::Parser::OFX102.stub(:new).and_return('ofx-102-parser')
+    ofx = OFX::Parser::Base.new(open("spec/fixtures/sample.ofx").read.sub("VERSION:102", "VERSION:100"))
+    ofx.parser.should == 'ofx-102-parser'
+  end
+
+  it "should parse transactions of version 100 ofx files" do
+    ofx = OFX::Parser::Base.new(open("spec/fixtures/sample.ofx").read.sub("VERSION:102", "VERSION:100"))
+    ofx.parser.account.transactions.should_not be_empty
+  end
+
   it "should use 211 parser to parse version 200 ofx files" do
     OFX::Parser::OFX211.stub(:new).and_return('ofx-211-parser')
     ofx = OFX::Parser::Base.new(ofx_2_example('200'))

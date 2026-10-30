@@ -15,6 +15,11 @@ module OFX
         'FEE', 'INT', 'OTHER', 'PAYMENT', 'POS', 'REPEATPMT', 'SRVCHG', 'XFER', 'BANK_SLIP',
         'PIX', 'PIX_REFUND', 'PIX_REVENUE', 'BILLING'].inject({}) { |hash, tran_type| hash[tran_type] = tran_type.downcase.to_sym; hash }
 
+      TRANSACTION_TYPE_ALIASES = {
+        "IN" => :credit,
+        "OUT" => :debit
+      }
+
       SEVERITY = {
         "INFO" => :info,
         "WARN" => :warn,
@@ -137,7 +142,8 @@ module OFX
       end
 
       def build_type(element)
-        TRANSACTION_TYPES[element.search("trntype").inner_text.to_s.upcase]
+        type = element.search("trntype").inner_text.to_s.upcase
+        TRANSACTION_TYPES[type] || TRANSACTION_TYPE_ALIASES[type]
       end
 
       def build_amount(element)
